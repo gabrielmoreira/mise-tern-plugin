@@ -211,7 +211,7 @@ Store.submit(S, { f_t_name = "hello", f_t_run = "echo \"hi there\" && echo 'x'",
 eq("review plan", S.dialog.kind, "plan")
 local added = table.concat(S.dialog.plan.file_edit.diff, "\n")
 check("the review shows the table that will be appended", string.find(added, "+ [tasks.hello]", 1, true) and string.find(added, '+ description = "Say hi"', 1, true) and string.find(added, '+ depends = ["build", "test"]', 1, true) and string.find(added, "+ quiet = true", 1, true), added)
-check("it goes to the folder's own mise.toml", string.lower(string.gsub(S.dialog.plan.file_edit.path, "\\", "/")) == string.lower(tfile), S.dialog.plan.file_edit.path)
+check("it goes to the folder's own mise.toml", Model.same_path(S.dialog.plan.file_edit.path, tfile, S.windows), S.dialog.plan.file_edit.path)
 Store.dispatch(S, "plan.back")
 eq("Back returns to the form", S.dialog.kind, "taskform")
 Store.submit(S, { f_t_name = "hello", f_t_run = "echo \"hi there\" && echo 'x'", f_t_description = "Say hi", f_t_depends = "build, test", f_t_dir = "" })
