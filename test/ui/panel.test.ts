@@ -218,7 +218,7 @@ describe("more", () => {
 
   test("Settings: widget scope buttons change the choice", async () => {
     openTab("settings");
-    await s.waitText("WIDGET AND STATUS LINE");
+    await s.waitText("WIDGET");
     click("widget.mode=global");
     await until(() => nodes(btn("widget.mode=global"))[0]?.class?.includes("on"), 8000, "global selected");
     click("widget.mode=mixed");

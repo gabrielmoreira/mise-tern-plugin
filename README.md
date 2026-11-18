@@ -40,7 +40,7 @@ Requirements: Tern and mise on Windows or macOS. The plugin finds mise by itself
 
 ## Widget
 
-Add **mise** in Tern's *Edit widgets* to get a compact chip with the counters of the focused folder, for example `3 local · 1 missing`. It is one chip, not a status line segment, so it never doubles up next to your other widgets. Hover for local, global and merged counts; click to open the panel.
+Add **mise** in Tern's *Edit widgets* to get a compact chip with the counters of the focused folder, for example `3 local · 1 missing`. It is one chip and nothing else is added to the status line, so it never doubles up next to your other widgets. Hover for local, global and merged counts; click to open the panel.
 
 ## Every change is reviewed first
 
@@ -68,7 +68,7 @@ You need [Lune](https://lune-org.github.io/docs) on `PATH` (or `LUNE=/path/to/lu
 
 `bun scripts/screenshots.ts` regenerates the pictures above from a throwaway world.
 
-Layout: `model.luau` parses mise output, `store.luau` holds state and actions, `view.luau` draws, `host.luau` is the panel block, `window.luau` is the window half (commands, widget, status line), `tasks.luau` edits task TOML, `plan.luau` builds the reviewed plans.
+Layout: `model.luau` parses mise output, `store.luau` holds state and actions, `view.luau` draws, `host.luau` is the panel block, `window.luau` is the window half (commands, widget), `tasks.luau` edits task TOML, `plan.luau` builds the reviewed plans.
 
 ## Known limits
 

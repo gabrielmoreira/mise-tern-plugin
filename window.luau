@@ -1,5 +1,5 @@
 --!nonstrict
--- Window half: follows the focused terminal's folder, keeps a snapshot for the widget and status line, places the
+-- Window half: follows the focused terminal's folder, keeps a snapshot for the widget, places the
 -- block, and performs what the block asks for through `mise://` links (open a file, run a task, choose mise).
 
 local Cli = require("./misecli")

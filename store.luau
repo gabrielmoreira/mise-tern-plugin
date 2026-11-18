@@ -176,7 +176,7 @@ function Store.refresh(S)
 	redraw(S)
 end
 
--- Publishes what the widget and status line show, read from kv by the window half (never from mise there).
+-- Publishes what the widget shows, read from kv by the window half (never from mise there).
 -- Per folder: { cwd, at, merged = {tools}, localtools = {tools}, updates = { merged, ["local"] } }; global: one key.
 local function tool_list(records: { any }): { any }
 	local out = {}

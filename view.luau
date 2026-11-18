@@ -539,7 +539,7 @@ local function settings_body(S)
 	local show = tern.kv.get("mise.widgetShow")
 	if not table.find(Model.WIDGET_SHOWS, show) then show = "counters" end
 	local LABEL = { ["local"] = "Local", global = "Global", mixed = "Mixed", merged = "Merged", counters = "Counters", tools = "Tool names" }
-	table.insert(out, with(ui.row({ ui.text(ui.span("WIDGET AND STATUS LINE", "muted strong")) }), { role = role("section"), key = "sec-widget" }))
+	table.insert(out, with(ui.row({ ui.text(ui.span("WIDGET", "muted strong")) }), { role = role("section"), key = "sec-widget" }))
 	table.insert(out, hint("What the widget counts. Each tab shows its own folder, so Local changes when you change tab."))
 	local modes = {}
 	for _, m in Model.WIDGET_MODES do
