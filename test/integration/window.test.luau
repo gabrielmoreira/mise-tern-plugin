@@ -1,5 +1,5 @@
 --!nonstrict
--- The window half against real mise: follows the focused folder, writes snapshots, renders widget and status per
+-- The window half against real mise: follows the focused folder, writes snapshots, renders the widget per
 -- scope option, places the panel, quotes task command lines.
 local fs = require("@lune/fs")
 local Lib = require("../lib")
@@ -34,7 +34,7 @@ Shim.cx.new_block = function(_, kind, args, how, opts) table.insert(Shim.effects
 Shim.load(ROOT .. "/window.luau")
 local widget = Shim.widgets.mise
 check("widget registered", widget ~= nil)
-check("status formatter registered", Shim.status_fn ~= nil)
+check("no status-line segment: the widget is the only place the counters are drawn (a second chip crowded other plugins' bars)", Shim.status_fn == nil)
 check("open command registered", Shim.commands.open ~= nil and Shim.commands.tasks ~= nil)
 
 Lib.section("before anything is read")
@@ -53,8 +53,6 @@ v = widget.render({ cwd = proj })
 eq("default is local counters", v.text, "1 local · 1 missing")
 eq("missing tool makes it a warning", v.tone, "warning")
 check("hover lists local, merged", string.find(v.title, "Local: 1 tools", 1, true) and string.find(v.title, "Merged: 2 tools", 1, true), v.title)
-local st = Shim.status_fn({ cwd = proj })
-eq("status line follows the same option", st[1].text, "1 local · 1 missing")
 
 Lib.section("each option")
 Shim.kv["mise.widgetMode"] = "merged"

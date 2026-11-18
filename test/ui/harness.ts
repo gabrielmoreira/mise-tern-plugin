@@ -43,7 +43,7 @@ export class TernSession {
   shots = "";
 
   /** Starts an isolated daemon and window with `pluginDir` installed. `env` extra variables reach every Tern process (and so the plugin's children). */
-  static async start(pluginDir: string, extraEnv: Record<string, string> = {}, opts: { settings?: object; cwd?: string } = {}): Promise<TernSession> {
+  static async start(pluginDir: string, extraEnv: Record<string, string> = {}, opts: { settings?: object; cwd?: string; extraPlugins?: string[] } = {}): Promise<TernSession> {
     const s = new TernSession();
     s.dir = mkdtempSync(join(tmpdir(), "tern-ui-"));
     const cfg = join(s.dir, "cfg");
@@ -66,8 +66,10 @@ export class TernSession {
       const fs = await import("node:fs");
       fs.writeFileSync(join(cfg, "settings.json"), JSON.stringify(opts.settings));
     }
-    const inst = spawnSync(s.bin.cli, ["plugin", "install", resolve(pluginDir), "--force"], { env: s.env, encoding: "utf8" });
-    if (inst.status !== 0) throw new Error("plugin install failed: " + inst.stdout + inst.stderr);
+    for (const dir of [pluginDir, ...(opts.extraPlugins ?? [])]) {
+      const inst = spawnSync(s.bin.cli, ["plugin", "install", resolve(dir), "--force"], { env: s.env, encoding: "utf8" });
+      if (inst.status !== 0) throw new Error("plugin install failed: " + inst.stdout + inst.stderr);
+    }
     s.daemon = spawn(s.bin.exe, ["daemon", "--socket", sock], { env: s.env, stdio: "ignore", detached: !IS_WIN });
     await sleep(1500);
     s.gui = spawn(s.bin.exe, ["--control", String(s.port), opts.cwd ?? s.dir], { env: s.env, stdio: "ignore", detached: !IS_WIN });

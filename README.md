@@ -36,7 +36,11 @@ Requirements: Tern and mise on Windows or macOS. The plugin finds mise by itself
 - **Overview**: the folders mise reports, plus `mise doctor`.
 - **Config**: the config files that apply here, in order.
 - **Activity**: every command the plugin ran, with its output.
-- **Settings**: mise settings, and what the widget and status line show (local counters, global, mixed or merged; counters or tool names).
+- **Settings**: mise settings, and what the widget shows (local counters, global, mixed or merged; counters or tool names).
+
+## Widget
+
+Add **mise** in Tern's *Edit widgets* to get a compact chip with the counters of the focused folder, for example `3 local · 1 missing`. It is one chip, not a status line segment, so it never doubles up next to your other widgets. Hover for local, global and merged counts; click to open the panel.
 
 ## Every change is reviewed first
 

@@ -129,11 +129,8 @@ local function view_for(pane)
 	return Model.widget_view(snap, tern.kv.get("mise.snap.global"), mode, show), snap
 end
 
-tern.chrome.status(function(pane)
-	local v, snap = view_for(pane)
-	if not v or not v.ready then return nil end
-	return { { text = v.text, icon = "package", tone = v.tone, command = "plugin." .. OWNER .. ".open" } }
-end)
+-- One place shows the counters: the widget below. A status line segment would draw the same chip a second time next
+-- to it (both are always on once the widget is in the bar), which crowded the bars of plugins that were there first.
 
 tern.chrome.widget("mise", {
 	name = "mise",
