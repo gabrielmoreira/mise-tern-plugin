@@ -74,11 +74,24 @@ export class TernSession {
     const deadline = Date.now() + 30000;
     while (Date.now() < deadline) {
       const r = s.ctlRaw("state");
-      if (r.includes('"ok":true')) return s;
+      if (r.includes('"ok":true')) { await s.dismissFirstRunCards(); return s; }
       await sleep(400);
     }
     await s.stop();
     throw new Error("tern window did not answer ctl in 30 s");
+  }
+
+  /** A fresh Tern config shows its macOS permissions card first and it takes the keyboard; close it. */
+  async dismissFirstRunCards() {
+    if (IS_WIN) return;
+    for (let i = 0; i < 8; i++) {
+      if (this.ctlRaw("tree").includes("macOS permissions")) {
+        this.ctlRaw("click button.mdl-cancel");
+        await sleep(500);
+        return;
+      }
+      await sleep(400);
+    }
   }
 
   ctlRaw(cmd: string): string {
