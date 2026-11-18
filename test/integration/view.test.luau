@@ -40,20 +40,24 @@ end
 
 local function render(S, name: string)
 	local fields = {}
-	local function input(key, placeholder) return { k = "input", p = { key = key, placeholder = placeholder } } end
+	local rows = {}
+	local function input(key, placeholder, _aria, editor_rows)
+		rows[key] = editor_rows
+		return { k = "input", p = { key = key, placeholder = placeholder } }
+	end
 	local texts = fields
 	local ok, main, dock = pcall(View.render, S, { filter = input("f_filter", "Filter"), task_filter = input("f_task", "Filter tasks") })
 	check(name .. ": renders", ok, main)
 	if not ok then return collect(nil) end
 	local out = collect(main)
-	local dlg = View.dialog(S, function(key, ph) return input(key, ph) end, function(key) return texts[key] or "" end)
+	local dlg = View.dialog(S, input, function(key) return texts[key] or "" end)
 	if dlg then
 		local d = { k = "col", p = {}, c = dlg.children }
 		local dout = collect(d)
 		for _, f in dlg.foot or {} do collect(f, dout) end
 		for _, t in dout.text do table.insert(out.text, t) end
 		for _, a in dout.acts do table.insert(out.acts, a) end
-		out.dialog = { title = dlg.title, fields = dlg.fields, text = dout.text, acts = dout.acts }
+		out.dialog = { title = dlg.title, fields = dlg.fields, text = dout.text, acts = dout.acts, rows = table.clone(rows) }
 		for _, f in dlg.foot or {} do if f.p and f.p.actions then table.insert(out.dialog.acts, f.p.actions.click) end end
 	end
 	return out
@@ -146,6 +150,8 @@ check("multi-line source shown", has_text(out, '"a",'))
 Store.dispatch(S, "task.new")
 out = render(S, "task form create")
 check("create form fields", out.dialog.fields.f_t_name and out.dialog.fields.f_t_run and out.dialog.fields.f_t_description and out.dialog.fields.f_t_depends)
+check("the command asks for a multi-line editor", out.dialog.rows.f_t_run ~= nil and out.dialog.rows.f_t_run > 2, (function() local k = {} for key in out.dialog.rows do table.insert(k, key .. "=" .. tostring(out.dialog.rows[key])) end return table.concat(k, ",") end)())
+check("single-line keys stay single-line", out.dialog.rows.f_t_depends == nil and out.dialog.rows.f_t_name == nil)
 check("advanced fields hidden until asked", not out.dialog.fields.f_t_dir)
 Store.dispatch(S, "taskform.adv")
 Store.dispatch(S, "taskform.source")
@@ -161,6 +167,19 @@ Store.dispatch(S, "task.open", "build")
 out = render(S, "task run dialog")
 check("run dialog has args field", out.dialog.fields.f_args)
 Store.dispatch(S, "dialog.close")
+
+Lib.section("the drift banner can be hidden until what it reports changes")
+S.drift = { { name = "MISE_INSTALLS_DIR", saved = "<saved>", live = nil } }
+out = render(S, "drift shown")
+check("banner shown", has_text(out, "Environment differs"))
+Store.dispatch(S, "drift.hide")
+out = render(S, "drift hidden")
+check("hide is remembered and silences this report", not has_text(out, "Environment differs"))
+S.drift = { { name = "MISE_INSTALLS_DIR", saved = "<other>", live = nil } }
+out = render(S, "drift changed")
+check("a different report comes back", has_text(out, "Environment differs"))
+S.drift = {}
+Shim.tern.kv.set("mise.driftHidden", nil)
 
 Lib.section("more tabs")
 for _, tab in { "overview", "config", "activity", "settings" } do
