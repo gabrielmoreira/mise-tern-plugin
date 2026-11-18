@@ -11,6 +11,7 @@ local w = World.new("view")
 local Cli = Shim.load(ROOT .. "/misecli.luau")
 local Store = Shim.load(ROOT .. "/store.luau")
 local View = Shim.load(ROOT .. "/view.luau")
+local Model = Shim.load(ROOT .. "/model.luau")
 
 local function collect(node, out)
 	out = out or { text = {}, acts = {}, roles = {}, fields = {} }
@@ -101,7 +102,8 @@ for _, scope in { "global", "local" } do
 	local o = render(S, "tools " .. scope)
 	if scope == "local" then
 		check("Local names the folder", has_text(o, proj))
-		check("Local names the config file it reads", has_text(o, proj .. "/mise.toml") or has_text(o, string.gsub(proj, "/", "\\") .. "\\mise.toml"), table.concat(o.text, " | "))
+		local want = Model.path_key(proj .. "/mise.toml", S.windows)
+		check("Local names the config file it reads", (function() for _, t in o.text do if string.find(t, "mise.toml") and Model.path_key(t, S.windows) == want then return true end end return false end)(), table.concat(o.text, " | "))
 		check("Local says global is not included", has_text(o, "Not included"))
 		check("rows say where the request lives", has_text(o, "mise.toml in this folder"))
 	else

@@ -107,6 +107,7 @@ check("macOS /private spellings are one place", Model.same_path("/private/var/fo
 check("only the system links are folded", not Model.same_path("/private/home/x", "/home/x", false))
 check("a folder merely named like one is not folded", not Model.same_path("/private/variable/x", "/variable/x", false))
 check("Windows ignores case and separators", Model.same_path("C:\\Work\\App", "c:/work/app", true))
+check("a doubled separator is the same folder", Model.same_path("/tmp//a", "/tmp/a", false) and Model.same_path("C:\\a\\\\b", "c:/a/b", true))
 check("and macOS paths stay case-sensitive", not Model.same_path("/a/App", "/a/app", false))
 
 Lib.finish()

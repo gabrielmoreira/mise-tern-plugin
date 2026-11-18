@@ -194,7 +194,7 @@ end
 -- on macOS /private/var, /private/tmp and /private/etc are the same places as /var, /tmp and /etc (a terminal reports
 -- one spelling, mise the other).
 function Model.path_key(path: string, windows: boolean): string
-	local k = string.gsub(path, "\\", "/")
+	local k = string.gsub(string.gsub(path, "\\", "/"), "/+", "/")
 	k = string.gsub(k, "/+$", "")
 	if windows then return string.lower(k) end
 	for _, top in { "var", "tmp", "etc" } do
