@@ -1,0 +1,34 @@
+/* Layout only; colors come from Tern's theme variables. */
+[data-role='mise.root'] { display: flex; flex-direction: column; height: 100%; min-height: 0; padding: 8px 8px 0; overflow: hidden; }
+[data-role='mise.root'] > :not([data-role='mise.body']) { flex: none; }
+[data-role='mise.body'] { display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; gap: 4px; margin: 0 -8px; padding: 4px 8px 12px; overflow-x: hidden; overflow-y: auto; }
+[data-role='mise.header'] { gap: 4px; padding: 0 0 6px; }
+[data-role='mise.bar'] { align-items: center; justify-content: space-between; gap: 6px; flex-wrap: nowrap; }
+[data-role='mise.title'], [data-role='mise.tools'] { align-items: center; gap: 4px; min-width: 0; }
+[data-role='mise.tools'] { flex: none; }
+/* Menus stay on one line: buttons never wrap their label; a narrow panel scrolls the row sideways. */
+[data-role='mise.nav'], [data-role='mise.scope'] { align-items: center; flex-wrap: nowrap; gap: 2px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; max-width: 100%; }
+[data-role='mise.nav']::-webkit-scrollbar, [data-role='mise.scope']::-webkit-scrollbar { display: none; }
+[data-role='mise.nav'] > *, [data-role='mise.scope'] > * { flex: none; }
+[data-role^='mise.btn'] { white-space: nowrap; }
+[data-role='mise.scope'] { gap: 4px; padding: 4px 0; }
+[data-role='mise.scope-context'] { padding: 2px 4px 6px; font-size: 11px; overflow-wrap: anywhere; }
+[data-role='mise.chips'] { gap: 4px; flex-wrap: wrap; align-items: center; }
+[data-role='mise.alerts'] { display: flex; flex-direction: column; gap: 4px; max-height: 40%; padding: 6px 0 2px; overflow-y: auto; }
+[data-role='mise.section'] { align-items: center; justify-content: space-between; margin-top: 8px; padding: 0 2px; font-size: 11px; letter-spacing: 0.04em; color: var(--t3); }
+[data-role='mise.row'], [data-role='mise.row-cursor'], [data-role='mise.row-selected'], [data-role='mise.row-cursor-selected'] {
+	padding: 5px 8px; gap: 2px; border-radius: var(--r-ctl, 8px); cursor: pointer; overflow-wrap: anywhere;
+}
+[data-role='mise.row']:hover, [data-role='mise.row-cursor']:hover, [data-role='mise.row-selected']:hover { background: var(--raise); }
+[data-role='mise.row-cursor'], [data-role='mise.row-cursor-selected'] { box-shadow: inset 0 0 0 1px var(--accent); }
+[data-role='mise.row-selected'], [data-role='mise.row-cursor-selected'] { background: var(--raise); }
+[data-role='mise.row-top'] { align-items: center; justify-content: space-between; gap: 6px; flex-wrap: nowrap; }
+[data-role='mise.row-title'] { align-items: baseline; gap: 6px; min-width: 0; }
+[data-role='mise.row-badges'], [data-role='mise.row-chips'] { align-items: center; gap: 4px; flex: none; }
+[data-role='mise.row-sub'] { color: var(--t3); font-size: 11px; overflow-wrap: anywhere; }
+[data-role='mise.name'] { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+[data-role='mise.hint'] { font-size: 11px; color: var(--t3); }
+[data-role='mise.dock'] { padding: 4px 8px; font-size: 11px; color: var(--t3); }
+[data-role='mise.form'] { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+[data-role='mise.dialog-foot'] { justify-content: flex-end; gap: 6px; padding: 8px 0 0; }
+[data-role='mise.plan-row'] { align-items: center; gap: 8px; padding: 3px 0; }

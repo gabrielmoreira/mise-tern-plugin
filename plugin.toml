@@ -1,0 +1,14 @@
+schema = 1
+id = "mise"
+name = "mise"
+version = "0.1.0"
+description = "Read, review and change your mise tools: global, project and merged views, upgrades, tasks and a reviewed action for every change."
+icon = "package"
+host = "host.luau"
+window = "window.luau"
+styles = ["mise.css"]
+
+[[blocks]]
+id = "panel"
+title = "mise"
+icon = "package"
