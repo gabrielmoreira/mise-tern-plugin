@@ -102,4 +102,11 @@ check("global needs the global snapshot", Model.widget_view(snap, nil, "global",
 check("local does not need the global snapshot", Model.widget_view(snap, nil, "local", "counters").ready == true)
 eq("empty project", Model.widget_view({ localtools = {}, merged = {} }, nil, "local", "counters").text, "0 local")
 
+Lib.section("path keys")
+check("macOS /private spellings are one place", Model.same_path("/private/var/folders/x/app", "/var/folders/x/app/", false))
+check("only the system links are folded", not Model.same_path("/private/home/x", "/home/x", false))
+check("a folder merely named like one is not folded", not Model.same_path("/private/variable/x", "/variable/x", false))
+check("Windows ignores case and separators", Model.same_path("C:\\Work\\App", "c:/work/app", true))
+check("and macOS paths stay case-sensitive", not Model.same_path("/a/App", "/a/app", false))
+
 Lib.finish()

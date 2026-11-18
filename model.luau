@@ -190,35 +190,33 @@ function Model.dirname(path: string): string
 	return string.match(path, "^(.*)[/\\][^/\\]*$") or ""
 end
 
+-- What two spellings of one path share: separators folded, no trailing separator, case-insensitive on Windows, and
+-- on macOS /private/var, /private/tmp and /private/etc are the same places as /var, /tmp and /etc (a terminal reports
+-- one spelling, mise the other).
 function Model.path_key(path: string, windows: boolean): string
 	local k = string.gsub(path, "\\", "/")
-	return if windows then string.lower(k) else k
+	k = string.gsub(k, "/+$", "")
+	if windows then return string.lower(k) end
+	for _, top in { "var", "tmp", "etc" } do
+		if k == "/private/" .. top or string.sub(k, 1, #top + 10) == "/private/" .. top .. "/" then return string.sub(k, 9) end
+	end
+	return k
 end
 
--- Case-insensitive on Windows, exact elsewhere, separators folded.
 function Model.same_path(a: string?, b: string?, windows: boolean): boolean
 	if not a or not b then return false end
-	local x = string.gsub(a, "\\", "/")
-	local y = string.gsub(b, "\\", "/")
-	x = string.gsub(x, "/+$", "")
-	y = string.gsub(y, "/+$", "")
-	if windows then x, y = string.lower(x), string.lower(y) end
-	return x == y
+	return Model.path_key(a, windows) == Model.path_key(b, windows)
 end
 
 -- Which scope a config path belongs to, judged from the scope reads themselves (never from computed locations).
 local function source_chip(path: string?, global_paths: { [string]: boolean }, cwd: string?, windows: boolean): string
 	if not path then return "env" end
-	local key = if windows then string.lower(string.gsub(path, "\\", "/")) else string.gsub(path, "\\", "/")
-	if global_paths[key] then return "global" end
+	if global_paths[Model.path_key(path, windows)] then return "global" end
 	if cwd and Model.same_path(Model.dirname(path), cwd, windows) then return "local" end
 	return "parent dir"
 end
 
-local function key_of(path: string, windows: boolean): string
-	local k = string.gsub(path, "\\", "/")
-	return if windows then string.lower(k) else k
-end
+local key_of = Model.path_key
 
 -- Rows for one scope. `scope_records` are what the scope's read returned; `all_records` the plain `ls --json`
 -- (installed + requested). `outdated` is a map from parse_outdated, or nil when not checked.
