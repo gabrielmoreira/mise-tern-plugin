@@ -1,0 +1,2 @@
+mise jq@1.7.1      ⇢ already installed
+mise WARN  jq is defined in <ROOT>\app\mise.toml which overrides the global config (<ROOT>\cfg\config.toml)

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "build",
+    "aliases": [],
+    "description": "Build the app",
+    "source": "<ROOT>\\app\\mise.toml",
+    "config_sources": [
+      "<ROOT>\\app\\mise.toml"
+    ],
+    "depends": [],
+    "daemons": null,
+    "secrets": [],
+    "depends_post": [],
+    "wait_for": [],
+    "env": [],
+    "dir": "<ROOT>\\app",
+    "hide": false,
+    "global": false,
+    "raw": false,
+    "interactive": false,
+    "sources": [],
+    "outputs": [],
+    "shell": null,
+    "quiet": false,
+    "silent": false,
+    "tools": {},
+    "usage": "",
+    "timeout": null,
+    "run": [
+      "echo build"
+    ],
+    "args": [],
+    "file": null
+  },
+  {
+    "name": "test",
+    "aliases": [],
+    "description": "Run tests",
+    "source": "<ROOT>\\app\\mise.toml",
+    "config_sources": [
+      "<ROOT>\\app\\mise.toml"
+    ],
+    "depends": [],
+    "daemons": null,
+    "secrets": [],
+    "depends_post": [],
+    "wait_for": [],
+    "env": [],
+    "dir": "<ROOT>\\app",
+    "hide": false,
+    "global": false,
+    "raw": false,
+    "interactive": false,
+    "sources": [],
+    "outputs": [],
+    "shell": null,
+    "quiet": false,
+    "silent": false,
+    "tools": {},
+    "usage": "",
+    "timeout": null,
+    "run": [
+      "echo test"
+    ],
+    "args": [],
+    "file": null
+  }
+]

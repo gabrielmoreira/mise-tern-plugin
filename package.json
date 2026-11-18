@@ -1,0 +1,12 @@
+{
+  "name": "mise-tern-plugin",
+  "private": true,
+  "description": "mise for Tern: a plugin that gives mise a native UI.",
+  "scripts": {
+    "test": "bun scripts/test.ts",
+    "test:unit": "bun scripts/test.ts unit",
+    "test:integration": "bun scripts/test.ts integration",
+    "test:ui": "bun scripts/test.ts ui",
+    "fixtures": "bun scripts/capture-fixtures.ts"
+  }
+}

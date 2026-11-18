@@ -1,0 +1,72 @@
+Remove tool requests from config files and prune unused installations
+
+Without `--path`, `--global`, or `--env`, mise edits the first loaded config
+that declares one of the tools; in your home directory it edits the global
+config. A version argument matches the configured request literally: to
+remove `node = "20"`, use `mise unuse node@20`, not the installed version it
+resolved to. Omit the version to remove every request for that tool from the
+selected file.
+
+Versions are pruned only when no remaining tracked config or tool stub needs
+them. Pass `--no-prune` to edit the config and keep the installations. To
+remove an installation without editing config, use `mise uninstall`.
+
+Usage: mise unuse [FLAGS] <INSTALLED_TOOL@VERSION>…
+
+Arguments:
+  <INSTALLED_TOOL@VERSION>…  Tools to remove from the config, with the version
+                             written as in the config
+
+Flags:
+  -e, --env <ENV>    Edit mise.<ENV>.toml in the current directory, or
+                     .mise.<ENV>.toml if that exists
+
+                     Not the same as the global -E, which only chooses which
+                     config files are loaded.
+  -g, --global       Use the global config file (`~/.config/mise/config.toml`)
+                     instead of the local one
+  -p, --path <PATH>  Edit this config file, or the config file in this directory
+      --override     Write to the global override file, `config.override.toml`
+
+                     The override file outranks all project config. With
+                     `--env`, writes `config.<ENV>.override.toml` instead. See
+                     https://mise.jdx.dev/configuration.html#override-file
+      --no-prune     Do not also prune the installed version
+  -h, --help         Print help
+
+Global flags:
+  -C, --cd <DIR>     Run as if mise were started in DIR
+  env: -E <ENV>      Load the `mise.<ENV>.toml` config files (same as MISE_ENV)
+
+                     Repeat the flag or separate names with commas to load
+                     several environments.
+  -j, --jobs <JOBS>  How many jobs to run in parallel; defaults to the `jobs`
+                     setting
+
+                     Values below 1 are treated as 1.
+                     [env: MISE_JOBS]
+  -q, --quiet        Suppress non-error messages
+                     [env: MISE_QUIET]
+  -v, --verbose      Show extra output (use -vv for even more)
+  -y, --yes          Answer yes to all confirmation prompts
+      --raw          Connect tasks and install commands directly to the terminal
+
+                     Commands then run one at a time. Same as `MISE_RAW=1` or
+                     the `raw` setting.
+      --locked       Require download URLs from the lockfile when installing
+
+                     Installing fails when the lockfile has no pre-resolved URL
+                     for a tool on the current platform, so mise does not call
+                     the GitHub or aqua registry APIs to find one. Same as
+                     `MISE_LOCKED=1` or the `locked` setting.
+      --silent       Suppress all task output and mise non-error messages
+
+Examples:
+    Remove node@22.0.0 from mise.toml and uninstall it if nothing else uses it
+    $ mise unuse node@22.0.0
+
+    Remove it from the global config instead
+    $ mise unuse -g node@22.0.0
+
+    Remove the node@20 request from mise.staging.toml
+    $ mise unuse --env staging node@20

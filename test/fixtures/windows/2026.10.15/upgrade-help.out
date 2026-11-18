@@ -1,0 +1,153 @@
+Upgrade outdated tools
+
+By default, keeps the range in mise.toml: with `node = "20"`, it installs the
+newest 20.x release. Use `--bump` to upgrade to the newest release overall
+and update the version in mise.toml. Also updates mise.lock when lockfiles
+are enabled; see https://mise.jdx.dev/dev-tools/mise-lock.html
+
+The version you upgraded from is removed after the `upgrade.prune_after`
+setting's grace period unless a tracked config or tool stub still uses it.
+Pass `--prune` to remove it now or `--no-prune` to keep it.
+
+Usage: mise upgrade [FLAGS] [INSTALLED_TOOL@VERSION]…
+
+Arguments:
+  [INSTALLED_TOOL@VERSION]…  Tools to upgrade, such as node@20 python@3.10
+
+                             Upgrades every configured tool when omitted.
+
+Flags:
+  -b, --bump                      Upgrade past the configured range to the
+                                  newest release, and update the config to match
+
+                                  The config keeps its precision: `node = "20"`
+                                  becomes `node = "22"`, and `node = "20.0.0"`
+                                  becomes `node = "22.1.0"`. If you name a
+                                  version on the command line (`node@latest`,
+                                  `node@3`, or `node@prefix:3`), that request is
+                                  written instead; `mise upgrade node@latest
+                                  --bump` writes `latest`. With the `pin`
+                                  setting on, a version request such as `node@3`
+                                  is written as the version it resolved to.
+                                  Requests that do not come from a config file
+                                  mise can write, such as `MISE_NODE_VERSION`,
+                                  are upgraded but not written.
+  -i, --interactive               Choose which tools to upgrade from a
+                                  multiselect menu
+  -j, --jobs <JOBS>               Number of jobs to run in parallel (default:
+                                  the `jobs` setting)
+                                  [env: MISE_JOBS]
+  -n, --dry-run                   Show what would change without changing
+                                  anything
+  -x, --exclude <INSTALLED_TOOL>  Tools to exclude from upgrading, such as go
+                                  python
+      --dry-run-code              Like --dry-run, but exit with code 1 if there
+                                  are outdated tools
+
+                                  Use it in scripts that check whether tools
+                                  need upgrading.
+      --inactive                  Also upgrade installed tools that the current
+                                  config does not request
+      --global                    Only upgrade tools defined in the global
+                                  config
+
+                                  Upgrades the requests in the global and system
+                                  config (~/.config/mise/config.toml,
+                                  /etc/mise/config.toml), even where a project
+                                  config or a `MISE_<TOOL>_VERSION` environment
+                                  variable sets its own version of the tool. It
+                                  runs as if from outside any project, so
+                                  project config, lockfiles, and `[env]` are
+                                  neither read nor changed. Tools that update
+                                  themselves, such as coding agents, run this
+                                  instead of their own updater; see
+                                  https://mise.jdx.dev/dev-tools/self-updating-tools.html
+      --local                     Only upgrade tools defined in project config
+                                  files
+
+                                  Skips tools defined in the global config
+                                  (~/.config/mise/config.toml) and tools set
+                                  through `MISE_<TOOL>_VERSION` environment
+                                  variables.
+      --minimum-release-age <MINIMUM_RELEASE_AGE>
+                                  Only upgrade to versions released before this
+                                  date or older than this duration
+
+                                  Supports absolute dates such as "2024-06-01"
+                                  and relative durations such as "90d" or "1y".
+
+                                  Applies only to requests that can match
+                                  several versions, such as "20" or "latest".
+                                  Exact versions such as "22.5.0" are not
+                                  filtered.
+      --no-prune                  Do not uninstall the versions that were
+                                  upgraded away from
+
+                                  The old version is left in place and is not
+                                  scheduled for removal. Use this when something
+                                  outside mise points at the install directory.
+
+                                  Set `upgrade.auto_prune = false` to make this
+                                  the default.
+      --prune                     Immediately uninstall the versions that were
+                                  upgraded away from
+
+                                  Use this to bypass `upgrade.prune_after`, or
+                                  to override `upgrade.auto_prune = false` for a
+                                  single run.
+      --raw                       Connect the install commands' stdin, stdout,
+                                  and stderr to the terminal
+
+                                  Implies `--jobs=1`.
+  -h, --help                      Print help
+
+Global flags:
+  -C, --cd <DIR>                  Run as if mise were started in DIR
+  -E, --env <ENV>                 Load the `mise.<ENV>.toml` config files (same
+                                  as MISE_ENV)
+
+                                  Repeat the flag or separate names with commas
+                                  to load several environments.
+  -q, --quiet                     Suppress non-error messages
+                                  [env: MISE_QUIET]
+  -v, --verbose                   Show extra output (use -vv for even more)
+  -y, --yes                       Answer yes to all confirmation prompts
+      --locked                    Require download URLs from the lockfile when
+                                  installing
+
+                                  Installing fails when the lockfile has no
+                                  pre-resolved URL for a tool on the current
+                                  platform, so mise does not call the GitHub or
+                                  aqua registry APIs to find one. Same as
+                                  `MISE_LOCKED=1` or the `locked` setting.
+      --silent                    Suppress all task output and mise non-error
+                                  messages
+
+Examples:
+    Upgrade every configured tool within its range
+    $ mise upgrade
+
+    Upgrade only node
+    $ mise upgrade node
+
+    Upgrade every tool to its newest release and update mise.toml
+    $ mise upgrade --bump
+
+    Show what would be upgraded
+    $ mise upgrade --dry-run
+
+    Upgrade everything except go
+    $ mise upgrade --exclude go
+
+    Choose tools from a menu
+    $ mise upgrade --interactive
+
+    Upgrade claude within the global config's request, leaving project config alone
+    $ mise upgrade --global claude
+
+Deprecation:
+
+The `-l` shorthand for `--bump` is deprecated and will be removed in mise
+2027.8.5.
+After removal, `-l` will become shorthand for `--local`. Use `-b` or `--bump`
+instead.

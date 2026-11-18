@@ -1,0 +1,17 @@
+[
+  {
+    "path": "<ROOT>\\app\\mise.toml",
+    "tools": [
+      "jq",
+      "node"
+    ],
+    "override": false
+  },
+  {
+    "path": "<ROOT>\\cfg\\config.toml",
+    "tools": [
+      "jq"
+    ],
+    "override": false
+  }
+]

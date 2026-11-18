@@ -1,0 +1,13 @@
+{
+  "node": {
+    "name": "node",
+    "requested": "latest",
+    "current": null,
+    "bump": null,
+    "latest": "26.13.1",
+    "source": {
+      "type": "mise.toml",
+      "path": "<ROOT>\\app\\mise.toml"
+    }
+  }
+}

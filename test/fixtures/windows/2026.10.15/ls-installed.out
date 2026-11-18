@@ -1,0 +1,21 @@
+{
+  "jq": [
+    {
+      "version": "1.6",
+      "requested_version": "1.6",
+      "install_path": "<ROOT>\\inst\\jq\\1.6",
+      "source": {
+        "type": "mise.toml",
+        "path": "<ROOT>\\app\\mise.toml"
+      },
+      "installed": true,
+      "active": true
+    },
+    {
+      "version": "1.7.1",
+      "install_path": "<ROOT>\\inst\\jq\\1.7.1",
+      "installed": true,
+      "active": false
+    }
+  ]
+}

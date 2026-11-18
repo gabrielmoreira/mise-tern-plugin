@@ -1,0 +1,112 @@
+Show outdated tool versions
+
+Lists tools whose installed version is older than the newest version their
+config request allows. For `node = "20"`, that is the newest 20.x release;
+pass `--bump` to compare against the newest release overall instead. Run
+`mise upgrade` to install the newer versions.
+
+Usage: mise outdated [FLAGS] [TOOL@VERSION]…
+
+Arguments:
+  [TOOL@VERSION]…  Tools to check, such as `node@20 python@3.10`
+
+                   Checks every tool in the global and project configs when
+                   omitted.
+
+Flags:
+  -b, --bump         Compare against the newest release overall, not only the
+                     configured range
+
+                     With `node = "20"` in your config, `mise outdated` reports
+                     the newest 20.x release. With this flag the `latest` column
+                     shows the newest release overall, such as 24.1.0, and a
+                     `bump` column shows the request `mise upgrade --bump` would
+                     write, such as `24`.
+  -J, --json         Output in JSON format
+      --inactive     Also check installed tools that the current config does not
+                     request
+
+                     By default, `mise outdated` checks only tools that come
+                     from the current config.
+      --global       Only check tools defined in the global config
+
+                     Reports the requests in the global and system config
+                     (~/.config/mise/config.toml, /etc/mise/config.toml), even
+                     where a project config or a `MISE_<TOOL>_VERSION`
+                     environment variable sets its own version of the tool: what
+                     `mise upgrade --global` would install.
+      --local        Only check tools defined in project config files
+
+                     Skips tools defined in the global config
+                     (~/.config/mise/config.toml) and tools set through
+                     `MISE_<TOOL>_VERSION` environment variables.
+      --no-header    Do not print the table header
+  -h, --help         Print help
+
+Global flags:
+  -C, --cd <DIR>     Run as if mise were started in DIR
+  -E, --env <ENV>    Load the `mise.<ENV>.toml` config files (same as MISE_ENV)
+
+                     Repeat the flag or separate names with commas to load
+                     several environments.
+  -j, --jobs <JOBS>  How many jobs to run in parallel; defaults to the `jobs`
+                     setting
+
+                     Values below 1 are treated as 1.
+                     [env: MISE_JOBS]
+  -q, --quiet        Suppress non-error messages
+                     [env: MISE_QUIET]
+  -v, --verbose      Show extra output (use -vv for even more)
+  -y, --yes          Answer yes to all confirmation prompts
+      --raw          Connect tasks and install commands directly to the terminal
+
+                     Commands then run one at a time. Same as `MISE_RAW=1` or
+                     the `raw` setting.
+      --locked       Require download URLs from the lockfile when installing
+
+                     Installing fails when the lockfile has no pre-resolved URL
+                     for a tool on the current platform, so mise does not call
+                     the GitHub or aqua registry APIs to find one. Same as
+                     `MISE_LOCKED=1` or the `locked` setting.
+      --silent       Suppress all task output and mise non-error messages
+
+Examples:
+    Show tools with a newer version inside their configured range
+    $ mise outdated
+name    requested  current  latest  source
+node    20         20.0.0   20.1.0  ~/src/app/mise.toml
+python  3.11       3.11.0   3.11.1  ~/src/app/mise.toml
+
+    Compare against the newest release overall and show the request for it
+    $ mise outdated --bump
+name  requested  current  bump  latest  source
+node  20         20.0.0   24    24.1.0  ~/src/app/mise.toml
+
+    Print the same information as JSON
+    $ mise outdated --json
+{
+  "node": {
+    "name": "node",
+    "requested": "20",
+    "current": "20.0.0",
+    "bump": null,
+    "latest": "20.1.0",
+    "source": {
+      "type": "mise.toml",
+      "path": "/home/me/src/app/mise.toml"
+    }
+  }
+}
+
+    Skip tools that only the global config requests
+    $ mise outdated --local
+
+    Check the global config's request for claude, even inside a project that sets its own
+    $ mise outdated --global claude --json
+
+Deprecation:
+
+The `-l` shorthand for `--bump` is deprecated and will be removed in mise
+2027.8.5.
+After removal, `-l` will become shorthand for `--local`. Use `-b` or `--bump`
+instead.

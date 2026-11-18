@@ -1,0 +1,487 @@
+[
+ {
+  "short": "1password",
+  "backends": [
+   "vfox:jdx/vfox-1password",
+   "aqua:1password/cli"
+  ],
+  "bins": [
+   "op"
+  ],
+  "description": "Password manager developed by AgileBits Inc",
+  "aliases": [
+   "1password-cli",
+   "op"
+  ]
+ },
+ {
+  "short": "1password-cli",
+  "backends": [
+   "vfox:jdx/vfox-1password",
+   "aqua:1password/cli"
+  ],
+  "bins": [
+   "op"
+  ],
+  "description": "Password manager developed by AgileBits Inc",
+  "aliases": [
+   "1password-cli",
+   "op"
+  ]
+ },
+ {
+  "short": "7z",
+  "backends": [
+   "aqua:ip7z/7zip",
+   "github:ip7z/7zip"
+  ],
+  "bins": [
+   "7za",
+   "7zz",
+   "7zzs"
+  ],
+  "description": "7-Zip is a file archiver with a high compression ratio",
+  "aliases": [
+   "7z"
+  ]
+ },
+ {
+  "short": "7zip",
+  "backends": [
+   "aqua:ip7z/7zip",
+   "github:ip7z/7zip"
+  ],
+  "bins": [
+   "7za",
+   "7zz",
+   "7zzs"
+  ],
+  "description": "7-Zip is a file archiver with a high compression ratio",
+  "aliases": [
+   "7z"
+  ]
+ },
+ {
+  "short": "aapt2",
+  "backends": [
+   "vfox:jdx/vfox-aapt2"
+  ],
+  "bins": [
+   "aapt2"
+  ],
+  "description": "Android Asset Packaging Tool (aapt)"
+ },
+ {
+  "short": "acli",
+  "backends": [
+   "aqua:atlassian.com/acli"
+  ],
+  "bins": [
+   "acli"
+  ],
+  "description": "Software to interact with Atlassian Cloud from the terminal"
+ },
+ {
+  "short": "act",
+  "backends": [
+   "aqua:nektos/act"
+  ],
+  "bins": [
+   "act"
+  ],
+  "description": "Run your GitHub Actions locally"
+ },
+ {
+  "short": "action-validator",
+  "backends": [
+   "aqua:mpalmer/action-validator",
+   "cargo:action-validator"
+  ],
+  "bins": [
+   "action-validator"
+  ],
+  "description": "Tool to validate GitHub Action and Workflow YAML files"
+ },
+ {
+  "short": "actionlint",
+  "backends": [
+   "aqua:rhysd/actionlint",
+   "go:github.com/rhysd/actionlint/cmd/actionlint"
+  ],
+  "bins": [
+   "actionlint"
+  ],
+  "description": ":octocat: Static checker for GitHub Actions workflow files"
+ },
+ {
+  "short": "adr-tools",
+  "backends": [
+   "aqua:npryce/adr-tools"
+  ],
+  "bins": [
+   "adr",
+   "adr-config",
+   "adr-generate",
+   "adr-help",
+   "adr-init",
+   "adr-link",
+   "adr-list",
+   "adr-new",
+   "adr-upgrade-repository"
+  ],
+  "description": "Command-line tools for working with Architecture Decision Records"
+ },
+ {
+  "short": "ag",
+  "backends": [
+   "vfox:jdx/vfox-ag"
+  ],
+  "description": "The Silver Searcher: A code searching tool similar to ack, with a focus on speed"
+ },
+ {
+  "short": "age",
+  "backends": [
+   "aqua:FiloSottile/age"
+  ],
+  "bins": [
+   "age",
+   "age-inspect",
+   "age-keygen",
+   "age-plugin-batchpass"
+  ],
+  "description": "A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability"
+ },
+ {
+  "short": "age-plugin-yubikey",
+  "backends": [
+   "github:str4d/age-plugin-yubikey",
+   "cargo:age-plugin-yubikey"
+  ],
+  "description": "age-plugin-yubikey is a plugin for age clients like age and rage, which enables files to be encrypted to age identities stored on YubiKeys"
+ },
+ {
+  "short": "agebox",
+  "backends": [
+   "aqua:slok/agebox"
+  ],
+  "bins": [
+   "agebox"
+  ],
+  "description": "Age based repository file encryption gitops tool"
+ },
+ {
+  "short": "agent-browser",
+  "backends": [
+   "aqua:vercel-labs/agent-browser"
+  ],
+  "bins": [
+   "agent-browser"
+  ],
+  "description": "Browser automation CLI for AI agents"
+ },
+ {
+  "short": "agy",
+  "backends": [
+   "aqua:google-antigravity/antigravity-cli"
+  ],
+  "bins": [
+   "agy",
+   "antigravity"
+  ],
+  "description": "Google's agentic development platform CLI companion",
+  "aliases": [
+   "agy"
+  ]
+ },
+ {
+  "short": "aichat",
+  "backends": [
+   "aqua:sigoden/aichat"
+  ],
+  "bins": [
+   "aichat"
+  ],
+  "description": "Use GPT-4(V), Gemini, LocalAI, Ollama and other LLMs in the terminal"
+ },
+ {
+  "short": "air",
+  "backends": [
+   "aqua:air-verse/air"
+  ],
+  "bins": [
+   "air"
+  ],
+  "description": "Live reload for Go apps"
+ },
+ {
+  "short": "aks-engine",
+  "backends": [
+   "aqua:Azure/aks-engine"
+  ],
+  "bins": [
+   "aks-engine"
+  ],
+  "description": "AKS Engine deploys and manages Kubernetes clusters in Azure"
+ },
+ {
+  "short": "allure",
+  "backends": [
+   "github:allure-framework/allure2"
+  ],
+  "bins": [
+   "allure"
+  ],
+  "description": "Allure Report is a popular open source tool for visualizing the results of a test run"
+ },
+ {
+  "short": "allurectl",
+  "backends": [
+   "github:allure-framework/allurectl"
+  ],
+  "bins": [
+   "allurectl"
+  ],
+  "description": "allurectl is the command line wrapper of Allure TestOps' API allowing you to upload the test results in real time from a build job, and managing entities on Allure TestOps side (test cases, launches, projects)"
+ },
+ {
+  "short": "alp",
+  "backends": [
+   "aqua:tkuchiki/alp"
+  ],
+  "bins": [
+   "alp"
+  ],
+  "description": "Access Log Profiler"
+ },
+ {
+  "short": "amass",
+  "backends": [
+   "github:owasp-amass/amass"
+  ],
+  "bins": [
+   "amass"
+  ],
+  "description": "In-depth attack surface mapping and asset discovery"
+ },
+ {
+  "short": "amazon-ecr-credential-helper",
+  "backends": [
+   "aqua:awslabs/amazon-ecr-credential-helper"
+  ],
+  "bins": [
+   "docker-credential-ecr-login"
+  ],
+  "description": "Automatically gets credentials for Amazon ECR on docker push/docker pull"
+ },
+ {
+  "short": "amazon-ecs-cli",
+  "backends": [
+   "aqua:aws/amazon-ecs-cli"
+  ],
+  "bins": [
+   "ecs-cli"
+  ],
+  "description": "The Amazon ECS CLI enables users to run their applications on ECS/Fargate using the Docker Compose file format, quickly provision resources, push/pull images in ECR, and monitor running applications on ECS/Fargate.",
+  "aliases": [
+   "ecs-cli"
+  ]
+ },
+ {
+  "short": "amp",
+  "backends": [
+   "npm:@ampcode/cli"
+  ],
+  "description": "An agentic coding tool built by Sourcegraph"
+ },
+ {
+  "short": "amplify",
+  "backends": [
+   "github:aws-amplify/amplify-cli"
+  ],
+  "bins": [
+   "amplify"
+  ],
+  "description": "The AWS Amplify CLI is a toolchain for simplifying serverless web and mobile development",
+  "aliases": [
+   "amplify"
+  ]
+ },
+ {
+  "short": "android-cli",
+  "backends": [
+   "http:android-cli"
+  ],
+  "bins": [
+   "android"
+  ],
+  "description": "Official Android command-line tool for creating, building, and running Android apps, managing emulators, and installing SDK packages",
+  "url": "https://developer.android.com/tools/agents/android-cli"
+ },
+ {
+  "short": "android-sdk",
+  "backends": [
+   "vfox:jdx/vfox-android-sdk"
+  ],
+  "bins": [
+   "apkanalyzer",
+   "avdmanager",
+   "d8",
+   "lint",
+   "profgen",
+   "r8",
+   "resourceshrinker",
+   "retrace",
+   "screenshot2",
+   "sdkmanager"
+  ],
+  "description": "Android Command-line tools"
+ },
+ {
+  "short": "ansible",
+  "backends": [
+   "pypi:ansible"
+  ],
+  "bins": [
+   "ansible",
+   "ansible-community",
+   "ansible-config",
+   "ansible-console",
+   "ansible-doc",
+   "ansible-galaxy",
+   "ansible-inventory",
+   "ansible-playbook",
+   "ansible-pull",
+   "ansible-test",
+   "ansible-vault"
+  ],
+  "description": "ansible python package contains the core runtime and CLI tools, such as ansible and ansible-playbook and extra modules, plugins, and roles"
+ },
+ {
+  "short": "ansible-base",
+  "backends": [
+   "pypi:ansible-core"
+  ],
+  "bins": [
+   "ansible",
+   "ansible-config",
+   "ansible-console",
+   "ansible-doc",
+   "ansible-galaxy",
+   "ansible-inventory",
+   "ansible-playbook",
+   "ansible-pull",
+   "ansible-test",
+   "ansible-vault"
+  ],
+  "description": "ansible-core python package contains the core runtime and CLI tools, such as ansible and ansible-playbook",
+  "aliases": [
+   "ansible-base"
+  ]
+ },
+ {
+  "short": "ansible-core",
+  "backends": [
+   "pypi:ansible-core"
+  ],
+  "bins": [
+   "ansible",
+   "ansible-config",
+   "ansible-console",
+   "ansible-doc",
+   "ansible-galaxy",
+   "ansible-inventory",
+   "ansible-playbook",
+   "ansible-pull",
+   "ansible-test",
+   "ansible-vault"
+  ],
+  "description": "ansible-core python package contains the core runtime and CLI tools, such as ansible and ansible-playbook",
+  "aliases": [
+   "ansible-base"
+  ]
+ },
+ {
+  "short": "ant",
+  "backends": [
+   "vfox:jdx/vfox-ant"
+  ],
+  "bins": [
+   "ant"
+  ],
+  "description": "Apache Ant is a Java library and command-line tool whose mission is to drive processes described in build files as targets and extension points dependent upon each other"
+ },
+ {
+  "short": "antigravity-cli",
+  "backends": [
+   "aqua:google-antigravity/antigravity-cli"
+  ],
+  "bins": [
+   "agy",
+   "antigravity"
+  ],
+  "description": "Google's agentic development platform CLI companion",
+  "aliases": [
+   "agy"
+  ]
+ },
+ {
+  "short": "apko",
+  "backends": [
+   "aqua:chainguard-dev/apko"
+  ],
+  "bins": [
+   "apko"
+  ],
+  "description": "Build OCI images from APK packages directly without Dockerfile"
+ },
+ {
+  "short": "apm",
+  "backends": [
+   "github:microsoft/apm"
+  ],
+  "bins": [
+   "apm"
+  ],
+  "description": "Agent Package Manager"
+ },
+ {
+  "short": "apollo-ios",
+  "backends": [
+   "github:apollographql/apollo-ios"
+  ],
+  "description": "Apollo iOS Code Generation",
+  "aliases": [
+   "apollo-ios-cli"
+  ]
+ },
+ {
+  "short": "apollo-ios-cli",
+  "backends": [
+   "github:apollographql/apollo-ios"
+  ],
+  "description": "Apollo iOS Code Generation",
+  "aliases": [
+   "apollo-ios-cli"
+  ]
+ },
+ {
+  "short": "apollo-router",
+  "backends": [
+   "github:apollographql/router"
+  ],
+  "bins": [
+   "router"
+  ],
+  "description": "A configurable, high-performance routing runtime for Apollo Federation"
+ },
+ {
+  "short": "apollo-rover",
+  "backends": [
+   "github:apollographql/rover"
+  ],
+  "bins": [
+   "rover"
+  ],
+  "description": "The CLI for Apollo GraphOS"
+ }
+]

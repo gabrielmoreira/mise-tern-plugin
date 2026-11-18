@@ -1,0 +1,241 @@
+{
+ "mise": "2026.10.15 windows-x64 (2026-10-19)",
+ "os": "windows",
+ "captured": "2026-11-18T22:07:54.940Z",
+ "ops": {
+  "version": {
+   "argv": [
+    "--version"
+   ],
+   "status": 0
+  },
+  "ls": {
+   "argv": [
+    "ls",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-current": {
+   "argv": [
+    "ls",
+    "--current",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-global": {
+   "argv": [
+    "ls",
+    "--global",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-local": {
+   "argv": [
+    "ls",
+    "--local",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-installed": {
+   "argv": [
+    "ls",
+    "--installed",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-missing": {
+   "argv": [
+    "ls",
+    "--missing",
+    "--json"
+   ],
+   "status": 0
+  },
+  "ls-prunable": {
+   "argv": [
+    "ls",
+    "--prunable",
+    "--json"
+   ],
+   "status": 0
+  },
+  "outdated": {
+   "argv": [
+    "outdated",
+    "--json"
+   ],
+   "status": 0
+  },
+  "outdated-bump": {
+   "argv": [
+    "outdated",
+    "--bump",
+    "--json"
+   ],
+   "status": 0
+  },
+  "outdated-local": {
+   "argv": [
+    "outdated",
+    "--local",
+    "--json"
+   ],
+   "status": 0
+  },
+  "config-ls": {
+   "argv": [
+    "config",
+    "ls",
+    "--json"
+   ],
+   "status": 0
+  },
+  "tasks-ls": {
+   "argv": [
+    "tasks",
+    "ls",
+    "--json"
+   ],
+   "status": 0
+  },
+  "settings-ls": {
+   "argv": [
+    "settings",
+    "ls",
+    "--json-extended"
+   ],
+   "status": 0
+  },
+  "doctor": {
+   "argv": [
+    "doctor",
+    "--json"
+   ],
+   "status": 1
+  },
+  "env": {
+   "argv": [
+    "env",
+    "--json"
+   ],
+   "status": 0
+  },
+  "where": {
+   "argv": [
+    "where",
+    "jq"
+   ],
+   "status": 0
+  },
+  "which": {
+   "argv": [
+    "which",
+    "jq"
+   ],
+   "status": 0
+  },
+  "cache-path": {
+   "argv": [
+    "cache",
+    "path"
+   ],
+   "status": 0
+  },
+  "use-dry-run": {
+   "argv": [
+    "use",
+    "--dry-run",
+    "jq@1.7.1"
+   ],
+   "status": 0
+  },
+  "use-dry-run-global": {
+   "argv": [
+    "use",
+    "--dry-run",
+    "--global",
+    "jq@1.7.1"
+   ],
+   "status": 0
+  },
+  "upgrade-dry-run": {
+   "argv": [
+    "upgrade",
+    "--dry-run"
+   ],
+   "status": 0
+  },
+  "prune-dry-run": {
+   "argv": [
+    "prune",
+    "--tools",
+    "--dry-run"
+   ],
+   "status": 0
+  },
+  "trust-show": {
+   "argv": [
+    "trust",
+    "--show"
+   ],
+   "status": 0
+  },
+  "ls-help": {
+   "argv": [
+    "ls",
+    "--help"
+   ],
+   "status": 0
+  },
+  "use-help": {
+   "argv": [
+    "use",
+    "--help"
+   ],
+   "status": 0
+  },
+  "upgrade-help": {
+   "argv": [
+    "upgrade",
+    "--help"
+   ],
+   "status": 0
+  },
+  "unuse-help": {
+   "argv": [
+    "unuse",
+    "--help"
+   ],
+   "status": 0
+  },
+  "outdated-help": {
+   "argv": [
+    "outdated",
+    "--help"
+   ],
+   "status": 0
+  },
+  "registry": {
+   "argv": [
+    "registry",
+    "--json"
+   ],
+   "status": 0,
+   "trimmed": 40
+  },
+  "ls-remote": {
+   "argv": [
+    "ls-remote",
+    "--json",
+    "jq"
+   ],
+   "status": 0,
+   "trimmed": 15
+  }
+ }
+}

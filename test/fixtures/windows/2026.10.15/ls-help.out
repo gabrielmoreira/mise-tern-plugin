@@ -1,0 +1,116 @@
+List installed and active tool versions
+
+Lists the tools mise knows about: versions that are installed, and versions
+requested by a config file (active) whether or not they are installed. Each row
+shows the tool, the version (marked `(missing)` when it is not installed), the
+config file that requests it, and the request as written.
+
+Usage: mise ls [FLAGS] [INSTALLED_TOOL]…
+
+Arguments:
+  [INSTALLED_TOOL]…  Only show these tools
+
+Flags:
+      --truncate / --no-truncate  Truncate long terminal output to fit the
+                                  available width
+                                  (default: true)
+  -b, --backend <BACKEND>         Only show tools from this backend, such as
+                                  aqua, cargo, core, or go
+
+                                  Registry shorthands count as the backend they
+                                  resolve to, so `jq` is listed
+                                  under aqua. Repeat the flag to show several
+                                  backends.
+  -c, --current                   Only show versions the loaded config files
+                                  request
+  -g, --global                    Only show versions the global config requests
+  -i, --installed                 Only show installed versions
+
+                                  Hides requested versions that are not
+                                  installed.
+      --grouped                   List tools in a separate section for each
+                                  backend
+
+                                  Cannot be combined with --json; use --backend
+                                  to filter JSON output.
+  -J, --json                      Output in JSON format
+  -l, --local                     Only show versions the local config requests
+  -m, --missing                   Only show requested versions that are not
+                                  installed
+      --all-sources               Show requests from every config file mise has
+                                  seen, not only loaded ones
+
+                                  mise tracks the config files it loads so `mise
+                                  prune` keeps the versions they use.
+      --monorepo                  Also list tools from every config root in
+                                  `[monorepo].config_roots`
+
+                                  Requires `monorepo_root = true` and an
+                                  explicit `config_roots` list in the
+                                  monorepo root's config. Uses the active
+                                  MISE_ENV.
+                                  [env: MISE_MONOREPO]
+      --no-header                 Do not print the header row
+      --outdated                  Show whether each version is outdated
+      --prefix <PREFIX>           Only show versions starting with PREFIX
+                                  (requires a tool argument)
+      --prunable                  List only tools that can be pruned with `mise
+                                  prune`
+  -h, --help                      Print help
+
+Global flags:
+  -C, --cd <DIR>                  Run as if mise were started in DIR
+  -E, --env <ENV>                 Load the `mise.<ENV>.toml` config files (same
+                                  as MISE_ENV)
+
+                                  Repeat the flag or separate names with commas
+                                  to load several environments.
+  -j, --jobs <JOBS>               How many jobs to run in parallel; defaults to
+                                  the `jobs` setting
+
+                                  Values below 1 are treated as 1.
+                                  [env: MISE_JOBS]
+  -q, --quiet                     Suppress non-error messages
+                                  [env: MISE_QUIET]
+  -v, --verbose                   Show extra output (use -vv for even more)
+  -y, --yes                       Answer yes to all confirmation prompts
+      --raw                       Connect tasks and install commands directly to
+                                  the terminal
+
+                                  Commands then run one at a time. Same as
+                                  `MISE_RAW=1` or the `raw` setting.
+      --locked                    Require download URLs from the lockfile when
+                                  installing
+
+                                  Installing fails when the lockfile has no
+                                  pre-resolved URL for a tool on the current
+                                  platform, so mise does not call the GitHub or
+                                  aqua registry APIs to find one. Same as
+                                  `MISE_LOCKED=1` or the `locked` setting.
+      --silent                    Suppress all task output and mise non-error
+                                  messages
+
+Examples:
+    Show installed versions and the requests from the loaded config files
+    $ mise ls
+
+    Show only versions the loaded config files request
+    $ mise ls --current
+
+    Find requested versions that are not installed
+    $ mise ls --missing
+
+    Machine-readable output: an object keyed by tool name
+    $ mise ls --json
+
+    With a tool argument, JSON output is an array of its version records
+    $ mise ls node --json
+
+    Include requests from every config file mise has seen
+    $ mise ls --all-sources
+
+    Show only tools from the go or cargo backends
+    $ mise ls --backend go --backend cargo
+
+    List tools in a separate section for each backend
+    $ mise ls --grouped
